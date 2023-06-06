@@ -1,7 +1,7 @@
-class AppServer {
-    private app: string
+export class AppServer {
+  private app: string
 
-    constructor(info: string) {
-        this.app = info ?? 'AppServer'
-    }
+  constructor(info: string) {
+    this.app = info ?? 'AppServer'
+  }
 }
