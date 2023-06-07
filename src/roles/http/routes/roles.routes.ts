@@ -1,9 +1,8 @@
 import { RolesRepository } from '@roles/repositories/RolesRepository'
-import { CreateRoleController } from '@roles/useCases/createRole/CreateRoleController'
+import { createRoleController } from '@roles/useCases/createRole'
 import { Router } from 'express'
-const rolesRouter = Router()
 
-const createRoleController = new CreateRoleController()
+const rolesRouter = Router()
 const rolesRepository = new RolesRepository()
 
 rolesRouter.post('/', (request, response) => {
