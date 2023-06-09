@@ -10,7 +10,7 @@ import {
   listRolesValidation,
   showRoleValidation,
   updateRoleValidation,
-} from '../validation/roles.validation'
+} from '../validation'
 
 const rolesRouter = Router()
 

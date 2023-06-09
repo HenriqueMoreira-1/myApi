@@ -1,25 +1,25 @@
 import { celebrate, Joi, Segments } from 'celebrate'
 
-export const createRoleValidation = celebrate({
+const createRoleValidation = celebrate({
   [Segments.BODY]: Joi.object().keys({
     name: Joi.string().required(),
   }),
 })
 
-export const listRolesValidation = celebrate({
+const listRolesValidation = celebrate({
   [Segments.QUERY]: Joi.object().keys({
     page: Joi.number(),
     limit: Joi.number(),
   }),
 })
 
-export const showRoleValidation = celebrate({
+const showRoleValidation = celebrate({
   [Segments.PARAMS]: Joi.object().keys({
     id: Joi.string().uuid().required(),
   }),
 })
 
-export const updateRoleValidation = celebrate({
+const updateRoleValidation = celebrate({
   [Segments.PARAMS]: Joi.object().keys({
     id: Joi.string().uuid().required(),
   }),
@@ -28,8 +28,16 @@ export const updateRoleValidation = celebrate({
   }),
 })
 
-export const deleteRoleValidation = celebrate({
+const deleteRoleValidation = celebrate({
   [Segments.PARAMS]: Joi.object().keys({
     id: Joi.string().uuid().required(),
   }),
 })
+
+export {
+  createRoleValidation,
+  listRolesValidation,
+  showRoleValidation,
+  updateRoleValidation,
+  deleteRoleValidation,
+}
