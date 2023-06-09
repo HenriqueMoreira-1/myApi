@@ -18,7 +18,7 @@ export class UpdateRoleUseCase {
       throw new AppError('Role not found!', 404)
     }
 
-    if (roleWithSameName) {
+    if (roleWithSameName && role.name !== roleWithSameName.name) {
       throw new AppError('Role name not informed or already in use!')
     }
 
