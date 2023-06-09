@@ -6,6 +6,7 @@ import { routes } from './routes'
 import { AppError } from '@shared/error/AppError'
 import swaggerFile from '../../swagger.json'
 import cors from 'cors'
+import '@shared/container'
 
 const app = express()
 app.use(cors())
