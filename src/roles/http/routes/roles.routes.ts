@@ -1,8 +1,3 @@
-import { createRoleController } from '@roles/useCases/createRole'
-import { deleteRoleController } from '@roles/useCases/deleteRole'
-import { listRolesController } from '@roles/useCases/listRoles'
-import { showRoleController } from '@roles/useCases/showRole'
-import { updateRoleController } from '@roles/useCases/updateRole'
 import { Router } from 'express'
 import {
   createRoleValidation,
@@ -11,8 +6,20 @@ import {
   showRoleValidation,
   updateRoleValidation,
 } from '../validation'
+import { container } from 'tsyringe'
+import { CreateRoleController } from '@roles/useCases/createRole/CreateRoleController'
+import { ListRolesController } from '@roles/useCases/listRoles/ListRolesController'
+import { ShowRoleController } from '@roles/useCases/showRole/ShowRoleController'
+import { UpdateRoleController } from '@roles/useCases/updateRole/UpdateRoleController'
+import { DeleteRoleController } from '@roles/useCases/deleteRole/DeleteRoleController'
 
 const rolesRouter = Router()
+
+const createRoleController = container.resolve(CreateRoleController)
+const listRolesController = container.resolve(ListRolesController)
+const showRoleController = container.resolve(ShowRoleController)
+const updateRoleController = container.resolve(UpdateRoleController)
+const deleteRoleController = container.resolve(DeleteRoleController)
 
 rolesRouter.post('/', createRoleValidation, (request, response) => {
   return createRoleController.handle(request, response)
