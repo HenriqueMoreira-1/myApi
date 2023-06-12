@@ -6,7 +6,7 @@ export type CreateUserDTO = {
   email: string
   password: string
   isAdmin: boolean
-  role: Role[]
+  role: Role
 }
 
 export type PaginateParams = {
@@ -23,7 +23,7 @@ export type UsersPaginateProperties = {
 }
 
 export interface IUsersRepository {
-  create({ name, email, isAdmin, password, role }: CreateUserDTO): Promise<User>
+  create({ name, email, password, isAdmin, role }: CreateUserDTO): Promise<User>
   save(user: User): Promise<User>
   findAll({
     page,
@@ -32,5 +32,6 @@ export interface IUsersRepository {
   }: PaginateParams): Promise<UsersPaginateProperties>
   findById(id: string): Promise<User | null>
   findByName(name: string): Promise<User | null>
+  findByEmail(email: string): Promise<User | null>
   delete(user: User): Promise<void>
 }
