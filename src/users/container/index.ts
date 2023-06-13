@@ -3,7 +3,7 @@ import { CreateUserController } from '@users/useCases/createUser/CreateUserContr
 import { ListUsersController } from '@users/useCases/listUsers/ListUsersController'
 import { container } from 'tsyringe'
 
-container.registerSingleton('UserRepository', UserRepository)
+container.registerSingleton('UsersRepository', UserRepository)
 
 container.registerSingleton('CreateUserController', CreateUserController)
 container.registerSingleton('ListUsersController', ListUsersController)

@@ -10,4 +10,11 @@ const createRoleValidation = celebrate({
   }),
 })
 
-export { createRoleValidation }
+const listUsersValidation = celebrate({
+  [Segments.QUERY]: {
+    page: Joi.number(),
+    limit: Joi.number(),
+  },
+})
+
+export { createRoleValidation, listUsersValidation }

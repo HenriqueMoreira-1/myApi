@@ -16,7 +16,7 @@ type CreateUserDTO = {
 @injectable()
 export class CreateUserUseCase {
   constructor(
-    @inject('UserRepository') private userRepository: IUsersRepository,
+    @inject('UsersRepository') private userRepository: IUsersRepository,
     @inject('RolesRepository') private rolesRepository: IRolesRepository,
   ) {}
 
