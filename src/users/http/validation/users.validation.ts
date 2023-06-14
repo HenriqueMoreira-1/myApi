@@ -17,4 +17,11 @@ const listUsersValidation = celebrate({
   },
 })
 
-export { createRoleValidation, listUsersValidation }
+const createLoginValidation = celebrate({
+  [Segments.BODY]: Joi.object().keys({
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+  }),
+})
+
+export { createRoleValidation, listUsersValidation, createLoginValidation }
