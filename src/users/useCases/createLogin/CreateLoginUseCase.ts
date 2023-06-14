@@ -7,7 +7,6 @@ import { sign } from 'jsonwebtoken'
 import jwtConfig from '@config/auth'
 
 type CreateLoginDTO = {
-  name: string
   email: string
   password: string
 }
