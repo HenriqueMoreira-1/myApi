@@ -1,4 +1,3 @@
-import { AppError } from '@shared/error/AppError'
 import { NextFunction, Request, Response } from 'express'
 import { Secret, verify } from 'jsonwebtoken'
 import authConfig from '@config/auth'
@@ -8,24 +7,40 @@ type JwtPayloadProps = {
 }
 
 export const isAuthenticated = (
-  req: Request,
-  res: Response,
+  request: Request,
+  response: Response,
   next: NextFunction,
 ) => {
-  const authHeader = req.headers.authorization
+  const authHeader = request.headers.authorization
 
   if (!authHeader) {
-    throw new AppError('Failed to verify access token', 401)
+    return response.status(401).json({
+      error: true,
+      code: 'token.invalid',
+      message: 'Failed to verify access token',
+    })
   }
 
   const token = authHeader.replace('Bearer ', '')
 
+  if (!token) {
+    return response.status(401).json({
+      error: true,
+      code: 'token.invalid',
+      message: 'Access token not present',
+    })
+  }
+
   try {
     const decodedToken = verify(token, authConfig.jwt.secret as Secret)
     const { sub } = decodedToken as JwtPayloadProps
-    req.user = { id: sub }
+    request.user = { id: sub }
     return next()
   } catch {
-    throw new AppError('Invalid authentication token', 401)
+    return response.status(401).json({
+      error: true,
+      code: 'token.expired',
+      message: 'Token expired',
+    })
   }
 }
