@@ -1,3 +1,6 @@
+import { IRefreshTokenRepository } from '@users/repositories/IRefreshTokenRepository'
+import { IUsersRepository } from '@users/repositories/IUsersRepository'
+import { RefreshTokenRepository } from '@users/repositories/RefreshTokenRepository'
 import { UserRepository } from '@users/repositories/UserRepository'
 import { CreateLoginController } from '@users/useCases/createLogin/CreateLoginController'
 import { CreateUserController } from '@users/useCases/createUser/CreateUserController'
@@ -7,7 +10,12 @@ import { UpdateAvatarController } from '@users/useCases/updateAvatar/UpdateAvata
 import { UpdateProfileController } from '@users/useCases/updateProfile/UpdateProfileController'
 import { container } from 'tsyringe'
 
-container.registerSingleton('UsersRepository', UserRepository)
+container.registerSingleton<IUsersRepository>('UsersRepository', UserRepository)
+
+container.registerSingleton<IRefreshTokenRepository>(
+  'RefreshTokenRepository',
+  RefreshTokenRepository,
+)
 
 container.registerSingleton('CreateUserController', CreateUserController)
 container.registerSingleton('ListUsersController', ListUsersController)
