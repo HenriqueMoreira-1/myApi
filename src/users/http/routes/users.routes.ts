@@ -3,6 +3,7 @@ import { Router } from 'express'
 import { container } from 'tsyringe'
 import multer from 'multer'
 import {
+  createAccessAndRefreshTokenValidation,
   createLoginValidation,
   createRoleValidation,
   listUsersValidation,
@@ -15,6 +16,7 @@ import uploadConfig from '@config/upload'
 import { UpdateAvatarController } from '@users/useCases/updateAvatar/UpdateAvatarController'
 import { ShowProfileController } from '@users/useCases/showProfile/ShowProfileController'
 import { UpdateProfileController } from '@users/useCases/updateProfile/UpdateProfileController'
+import { CreateAccessAndRefreshTokenController } from '@users/useCases/createAccessAndRefreshToken/CreateAccessAndRefreshTokenController'
 
 const usersRouter = Router()
 
@@ -24,6 +26,9 @@ const createLoginController = container.resolve(CreateLoginController)
 const updateAvatarController = container.resolve(UpdateAvatarController)
 const showProfileController = container.resolve(ShowProfileController)
 const updateProfileController = container.resolve(UpdateProfileController)
+const createAccessAndRefreshTokenController = container.resolve(
+  CreateAccessAndRefreshTokenController,
+)
 
 const upload = multer(uploadConfig)
 
@@ -68,6 +73,15 @@ usersRouter.put(
   updateProfileValidation,
   (request, response) => {
     return updateProfileController.handle(request, response)
+  },
+)
+
+usersRouter.put(
+  '/refresh_token',
+  isAuthenticated,
+  createAccessAndRefreshTokenValidation,
+  (request, response) => {
+    return createAccessAndRefreshTokenController.handle(request, response)
   },
 )
 

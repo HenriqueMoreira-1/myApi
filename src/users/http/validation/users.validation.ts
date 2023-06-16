@@ -39,9 +39,16 @@ const updateProfileValidation = celebrate({
   },
 })
 
+const createAccessAndRefreshTokenValidation = celebrate({
+  [Segments.BODY]: {
+    refresh_token: Joi.string().required(),
+  },
+})
+
 export {
   createRoleValidation,
   listUsersValidation,
   createLoginValidation,
   updateProfileValidation,
+  createAccessAndRefreshTokenValidation,
 }
