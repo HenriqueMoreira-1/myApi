@@ -17,6 +17,7 @@ import { UpdateAvatarController } from '@users/useCases/updateAvatar/UpdateAvata
 import { ShowProfileController } from '@users/useCases/showProfile/ShowProfileController'
 import { UpdateProfileController } from '@users/useCases/updateProfile/UpdateProfileController'
 import { CreateAccessAndRefreshTokenController } from '@users/useCases/createAccessAndRefreshToken/CreateAccessAndRefreshTokenController'
+import { addUserInfoToRequest } from '../middlewares/addUserInfoToRequest'
 
 const usersRouter = Router()
 
@@ -76,9 +77,9 @@ usersRouter.put(
   },
 )
 
-usersRouter.put(
+usersRouter.post(
   '/refresh_token',
-  isAuthenticated,
+  addUserInfoToRequest,
   createAccessAndRefreshTokenValidation,
   (request, response) => {
     return createAccessAndRefreshTokenController.handle(request, response)
