@@ -18,7 +18,7 @@ type IResponse = {
 }
 
 @injectable()
-export class CreateAccessAndRefreshToken {
+export class CreateAccessAndRefreshTokenUseCase {
   constructor(
     @inject('UsersRepository') private userRepository: IUsersRepository,
     @inject('RefreshTokenRepository')
