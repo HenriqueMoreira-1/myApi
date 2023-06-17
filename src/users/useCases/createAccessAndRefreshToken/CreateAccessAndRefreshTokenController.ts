@@ -11,7 +11,7 @@ export class CreateAccessAndRefreshTokenController {
     const user_id = request.user.id
     const { refresh_token } = request.body
 
-    const { user, refreshToken, accesstoken } =
+    const { user, refreshToken, accessToken } =
       await createAccessAndRefreshTokenUseCase.execute({
         user_id,
         refresh_token,
@@ -20,7 +20,7 @@ export class CreateAccessAndRefreshTokenController {
       instanceToInstance({
         user,
         refreshToken,
-        accesstoken,
+        accessToken,
       }),
     )
   }

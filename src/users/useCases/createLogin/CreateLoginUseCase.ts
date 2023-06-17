@@ -14,7 +14,7 @@ type CreateLoginDTO = {
 
 type IResponse = {
   user: User
-  accesstoken: string
+  accessToken: string
   refreshToken: string
 }
 
@@ -39,7 +39,7 @@ export class CreateLoginUseCase {
       throw new AppError('Incorrect Email/Password combination', 401)
     }
 
-    const accesstoken = sign({}, jwtConfig.jwt.secret, {
+    const accessToken = sign({}, jwtConfig.jwt.secret, {
       subject: user.id,
       expiresIn: jwtConfig.jwt.expiresIn,
     })
@@ -58,6 +58,6 @@ export class CreateLoginUseCase {
       valid: true,
     })
 
-    return { user, accesstoken, refreshToken }
+    return { user, accessToken, refreshToken }
   }
 }
