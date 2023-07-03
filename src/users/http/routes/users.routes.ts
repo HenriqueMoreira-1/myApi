@@ -5,7 +5,7 @@ import multer from 'multer'
 import {
   createAccessAndRefreshTokenValidation,
   createLoginValidation,
-  createRoleValidation,
+  createUserValidation,
   listUsersValidation,
   updateProfileValidation,
 } from '../validation'
@@ -36,7 +36,7 @@ const upload = multer(uploadConfig)
 usersRouter.post(
   '/',
   isAuthenticated,
-  createRoleValidation,
+  createUserValidation,
   (request, response) => {
     return createUserController.handle(request, response)
   },

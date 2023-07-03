@@ -1,6 +1,6 @@
 import { celebrate, Joi, Segments } from 'celebrate'
 
-const createRoleValidation = celebrate({
+const createUserValidation = celebrate({
   [Segments.BODY]: Joi.object().keys({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
@@ -46,7 +46,7 @@ const createAccessAndRefreshTokenValidation = celebrate({
 })
 
 export {
-  createRoleValidation,
+  createUserValidation,
   listUsersValidation,
   createLoginValidation,
   updateProfileValidation,
